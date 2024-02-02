@@ -53,3 +53,44 @@
 body{
   font-family: Gellix, sans-serif;
 }
+
+/* Custom styling for the date component */
+
+.mobile-datepicker .month .month-title:before, .mobile-datepicker .month .month-title:after{
+  display: none !important;
+}
+.mobile-datepicker .month .month-title{
+  padding: 0 16px;
+  width: fit-content !important;
+  text-align: left !important;
+  display: flex;
+  gap: 4px;
+  flex-direction: row-reverse;
+  font-weight: 400 !important;
+  align-items: center;
+  font-size: 14px !important;
+  color: #15162B !important;
+  line-height: 20px !important;
+  letter-spacing: normal !important;
+}
+.mobile-datepicker .month .month-title span {
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  letter-spacing: normal !important;
+  display: block;
+  color: #15162B !important;
+  line-height: 20px !important;
+}
+.mobile-datepicker .month ul.date li{
+  color: #434455 !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+}
+.mobile-datepicker .month ul.days {
+  display: none !important;
+}
+.mobile-datepicker .month ul.date li.active span{
+  background-color: #223E7C !important;
+  transition: all;
+  animation-duration: 3s;
+}

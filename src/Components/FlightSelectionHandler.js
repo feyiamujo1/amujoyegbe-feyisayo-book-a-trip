@@ -1,12 +1,9 @@
 import { useState } from "react";
-import Sheet from "react-modal-sheet";
-import Airports from "../Assets/data/airports.json";
 
-const FlightSelectionHandler = ({
-  flightType,
-  flightValue,
-  setFlightValue,
-}) => {
+import Airports from "../Assets/data/airports.json";
+import BottomSheet from "./FlightBottomSheet";
+
+const FlightSelectionHandler = ({ flightType, flightId, setFlightId }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -14,12 +11,12 @@ const FlightSelectionHandler = ({
         onClick={() => {
           setShowModal(true);
         }}
-        className="flex items-center gap-2.5 rounded-[5px] p-4 bg-white h-[48px] active:bg-[#dadada] transition-opacity duration-500">
+        className="flex items-center gap-2.5 rounded-[5px] py-4 px-3 bg-white h-[50px] active:bg-buttonHover md:hover:bg-buttonHover transition-all duration-500 cursor-pointer">
         <div className="flex items-center gap-2.5 ">
           {flightType === "From" && (
             <svg
-              width="13"
-              height="11"
+              width="15"
+              height="13"
               viewBox="0 0 13 11"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +28,8 @@ const FlightSelectionHandler = ({
           )}
           {flightType === "To" && (
             <svg
-              width="15"
-              height="15"
+              width="18"
+              height="18"
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -42,42 +39,26 @@ const FlightSelectionHandler = ({
               />
             </svg>
           )}
-          <p className="text-grayedOut text-[10px] ">{flightType}</p>
+          <p className="text-grayedOut text-xs ">{flightType}</p>
         </div>
         <div>
-          <p className="text-xs ">
-            <span>
-              {flightType === "To" ? "Lagos, Nigeria" : "Abidjan, Cote d’ivore"}
-            </span>{" "}
-            <span className="">({flightType === "To" ? "LOS" : "ABJ"} )</span>
-          </p>
+          {flightId !== "" &&
+            Airports.map((airport) =>
+              airport.Id === flightId ? (
+                <p key={airport.Id} className="text-sm ">
+                  <span>{airport.Name}</span>{" "}
+                  <span className="">({airport.Code})</span>
+                </p>
+              ) : null
+            )}
         </div>
       </div>
-      <Sheet  isOpen={showModal} onClose={() => setShowModal(false)}>
-        <Sheet.Container>
-          <Sheet.Header />
-          <Sheet.Content>
-            <Sheet.Scroller>
-              <div className="w-11/12 mx-auto overflow-scroll">
-                {Airports.map((airport) => (
-                  <div
-                    key={airport.ie}
-                    className="flex justify-between items-center h-[60px] border-b border-[#EFEFEF]">
-                    <div>
-                      <p className="text-sm text-black400">
-                        {airport.StateName}, Nigeria
-                      </p>
-                      <p className="text-xs text-black300">{airport.Name}</p>
-                    </div>
-                    <p className="text-sm text-black400">{airport.Code}</p>
-                  </div>
-                ))}
-              </div>
-            </Sheet.Scroller>
-          </Sheet.Content>
-        </Sheet.Container>
-        <Sheet.Backdrop />
-      </Sheet>
+      <BottomSheet
+        Airports={Airports}
+        setFlightId={setFlightId}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </>
   );
 };

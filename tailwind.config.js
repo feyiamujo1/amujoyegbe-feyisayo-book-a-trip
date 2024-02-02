@@ -11,6 +11,7 @@ module.exports = {
         customBlack: "#080403",
         bgWhite: "#F9F9F9",
         buttonOffWhite: "#FAFAFA",
+        buttonHover: "#dadada",
         textBlack: "#72737F",
         black400: "#15162B",
         black300: "#15162B",

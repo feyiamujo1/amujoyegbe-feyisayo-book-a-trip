@@ -8,31 +8,31 @@ const SearchPage = () => {
   const [adultCount, setAdultCount] = useState(1);
   const [childrenCount, setChildrenCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
-  const [OriginInfo, setOriginInfo] = useState({});
-  const [destinationInfo, setDestinationInfo] = useState({});
-  const [dateInfo, setDateInfo] = useState("");
+  const [flightOriginId, setFlightOriginId] = useState("");
+  const [flightDestinationId, setFlightDestinationId] = useState("");
+  const [flightDateInfo, setFlightDateInfo] = useState("");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       <Header heading={"Search Flight"} />
       <div className="space-y-2.5">
         <FlightSelectionHandler
           flightType={"From"}
-          flightValue={OriginInfo}
-          setFlightValue={setOriginInfo}
+          flightId={flightOriginId}
+          setFlightId={setFlightOriginId}
         />
         <FlightSelectionHandler
           flightType={"To"}
-          flightValue={destinationInfo}
-          setFlightValue={setDestinationInfo}
+          flightId={flightDestinationId}
+          setFlightId={setFlightDestinationId}
         />
-        <DateHandler dateInfo={dateInfo} setDateInfo={setDateInfo} />
+        <DateHandler flightDateInfo={flightDateInfo} setFlightDateInfo={setFlightDateInfo} />
       </div>
       <div className="flex flex-col gap-5">
         <div className="flex items-center gap-2.5">
           <svg
-            width="11"
-            height="13"
+            width="13"
+            height="15"
             viewBox="0 0 11 13"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ const SearchPage = () => {
               fill="#080403"
             />
           </svg>
-          <p className="font-semibold text-xs">Passengers</p>
+          <p className="font-semibold text-sm">Passengers</p>
         </div>
         <div className="space-y-2.5">
           <ContentCounter
