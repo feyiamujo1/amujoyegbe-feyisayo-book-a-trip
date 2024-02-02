@@ -9,7 +9,9 @@ const DateBottomSheet = ({
   showDateModal,
   setShowDateModal,
 }) => {
+  const todaysDate = new Date();
   const [selectedDate, setSelectedDate] = useState();
+
   return (
     <>
       <Sheet isOpen={showDateModal} onClose={() => setShowDateModal(false)}>
@@ -17,44 +19,42 @@ const DateBottomSheet = ({
           <Sheet.Header />
           <Sheet.Content>
             <Sheet.Scroller>
-              <div className="py-6 px-1 cursor-pointer relative">
+              <div className="py-6 cursor-pointer relative">
                 <button
-                  className="fixed right-4 -mt-4 z-[9999] "
+                  className="fixed right-4 -mt-4 z-[9999] group "
                   onClick={() => setShowDateModal(false)}>
                   <svg
                     width="12"
                     height="12"
                     viewBox="0 0 12 12"
-                    fill="none"
+                    className="fill-[#434455] group-hover:fill-buttonBlue group-active:fill-buttonBlue transition-all duration-500"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M11.8333 1.34163L10.6583 0.166626L5.99999 4.82496L1.34166 0.166626L0.166656 1.34163L4.82499 5.99996L0.166656 10.6583L1.34166 11.8333L5.99999 7.17496L10.6583 11.8333L11.8333 10.6583L7.17499 5.99996L11.8333 1.34163Z"
-                      fill="#434455"
-                    />
+                    <path d="M11.8333 1.34163L10.6583 0.166626L5.99999 4.82496L1.34166 0.166626L0.166656 1.34163L4.82499 5.99996L0.166656 10.6583L1.34166 11.8333L5.99999 7.17496L10.6583 11.8333L11.8333 10.6583L7.17499 5.99996L11.8333 1.34163Z" />
                   </svg>
                 </button>
-                <div className="fixed w-full pt-4 -mt-8 space-y-4 bg-white ">
+                <div className="fixed w-full pt-6 -mt-8 space-y-4 bg-white ">
                   <p className="font-medium text-center text-black400">
                     Travel dates
                   </p>
-                  <p className="text-black400 pl-4 ">Select your travel date</p>
+                  <p className="text-black400 pl-5 ">Select your travel date</p>
                   <div>
-                    <ul className=" grid grid-cols-7 text-sm text-[#72737F] font-normal">
-                      <li className="text-center -ml-2.5">Sun</li>
-                      <li className="text-center -ml-2.5">Mon</li>
-                      <li className="text-center -ml-2.5">Tue</li>
-                      <li className="text-center -ml-2.5">Wed</li>
-                      <li className="text-center -ml-2.5">Thu</li>
-                      <li className="text-center -ml-2.5">Fri</li>
-                      <li className="text-center -ml-2.5">Sat</li>
+                    <ul className=" grid grid-cols-7 text-sm text-[#72737F] font-normal px-2">
+                      <li className="text-center ">Sun</li>
+                      <li className="text-center ">Mon</li>
+                      <li className="text-center ">Tue</li>
+                      <li className="text-center ">Wed</li>
+                      <li className="text-center ">Thu</li>
+                      <li className="text-center ">Fri</li>
+                      <li className="text-center ">Sat</li>
                     </ul>
                   </div>
                   <hr />
                 </div>
-                <div className="mb-10 mt-32">
+                <div className="mb-10 mt-32 px-2">
                   <MobileCalendar
-                    minDate={moment(new Date(), "YYYY-MM-DD")}
-                    maxDate={moment("2025-12-31", "YYYY-MM-DD")}
+                    minDate={moment(todaysDate, "YYYY-MM-DD")}
+                    maxDate={moment("2024-12-31", "YYYY-MM-DD")}
+                    selectedDate={selectedDate}
                     onSelect={(date) => {
                       setSelectedDate(moment(date._d, "YYYY-MM-DDTHH:mm:ss"));
                       console.log(date);
@@ -67,7 +67,7 @@ const DateBottomSheet = ({
                       setShowDateModal(false);
                       setFlightDateInfo(selectedDate.format("ddd D, YYYY"));
                     }}
-                    className="w-full px-4 py-3 bg-buttonBlue text-center text-white rounded-[5px]">
+                    className="w-full px-4 py-3 bg-buttonBlue text-center text-white rounded-[5px] hover:bg-grayedOut active:bg-grayedOut transition-all duration-500">
                     Confirm
                   </button>
                 </div>

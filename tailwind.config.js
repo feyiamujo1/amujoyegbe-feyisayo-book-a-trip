@@ -17,6 +17,9 @@ module.exports = {
         black300: "#15162B",
 
       },
+      boxShadow: {
+        custom: "0px 1px 1px 0px #efefef"
+      },
     },
   },
   plugins: [],

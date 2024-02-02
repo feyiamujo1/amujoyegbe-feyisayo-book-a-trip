@@ -10,7 +10,7 @@ const ContentCounter = ({ contentName, minimum, count, setCounter }) => {
     }
   };
   return (
-    <div className="flex justify-between items-center gap-2 rounded-[5px] px-3 py-1.5 bg-white">
+    <div className="flex justify-between items-center gap-2 rounded-[5px] px-3 py-1.5 bg-white shadow-custom">
       <p className="text-grayedOut text-[12px]">{contentName}</p>
       <div className="flex gap-3 items-center">
         <button
@@ -18,8 +18,8 @@ const ContentCounter = ({ contentName, minimum, count, setCounter }) => {
           disabled={count <= minimum}
           className={`h-9 w-9 flex items-center justify-center rounded-[5px] bg-buttonOffWhite ${
             count <= minimum
-              ? "buttonHover"
-              : "active:bg-buttonHover  md:hover:bg-buttonHover transition-all duration-500"
+              ? ""
+              : "active:bg-grayedOut  md:hover:bg-grayedOut transition-all duration-500"
           } `}>
           <svg
             width="12"
@@ -33,7 +33,7 @@ const ContentCounter = ({ contentName, minimum, count, setCounter }) => {
         <p className="text-Black400 w-[30px] text-center">{count}</p>
         <button
           onClick={increaseCount}
-          className={`h-9 w-9 flex items-center justify-center rounded-[5px] bg-buttonOffWhite active:bg-buttonHover md:hover:bg-buttonHover transition-all duration-500`}>
+          className={`h-9 w-9 flex items-center justify-center rounded-[5px] bg-buttonOffWhite active:bg-grayedOut md:hover:bg-grayedOut transition-all duration-500`}>
           <svg
             width="12"
             height="12"

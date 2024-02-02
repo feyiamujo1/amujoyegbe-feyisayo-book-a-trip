@@ -3,8 +3,10 @@ import Header from "../Components/Header";
 import ContentCounter from "../Components/ContentCounter";
 import FlightSelectionHandler from "../Components/FlightSelectionHandler";
 import DateHandler from "../Components/DateHandler";
+import { useNavigate } from "react-router-dom";
 
 const SearchPage = () => {
+  const navigate = useNavigate();
   const [adultCount, setAdultCount] = useState(1);
   const [childrenCount, setChildrenCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
@@ -12,8 +14,18 @@ const SearchPage = () => {
   const [flightDestinationId, setFlightDestinationId] = useState("");
   const [flightDateInfo, setFlightDateInfo] = useState("");
 
+  const navigateToNext = () => {
+    navigate("/flight-listing", {
+      state: {
+        flightOriginId: flightOriginId,
+        flightDestinationId: flightDestinationId,
+        flightDateInfo: flightDateInfo,
+      },
+    });
+  };
+
   return (
-    <div className="space-y-6 ">
+    <div className="space-y-6 relative">
       <Header heading={"Search Flight"} />
       <div className="space-y-2.5">
         <FlightSelectionHandler
@@ -26,7 +38,10 @@ const SearchPage = () => {
           flightId={flightDestinationId}
           setFlightId={setFlightDestinationId}
         />
-        <DateHandler flightDateInfo={flightDateInfo} setFlightDateInfo={setFlightDateInfo} />
+        <DateHandler
+          flightDateInfo={flightDateInfo}
+          setFlightDateInfo={setFlightDateInfo}
+        />
       </div>
       <div className="flex flex-col gap-5">
         <div className="flex items-center gap-2.5">
@@ -63,6 +78,18 @@ const SearchPage = () => {
             setCounter={setInfantCount}
           />
         </div>
+      </div>
+      <div className=" w-full bottom-0 pt-8 ">
+        <button
+          disabled={
+            flightOriginId === "" ||
+            flightDestinationId === "" ||
+            flightDateInfo === ""
+          }
+          onClick={navigateToNext}
+          className="w-full px-4 py-3 bg-buttonBlue text-center text-white rounded-[5px] hover:bg-grayedOut active:bg-grayedOut transition-all duration-500 disabled:bg-buttonBlue disabled:bg-opacity-60 disabled:hover:bg-buttonBlue disabled:hover:bg-opacity-60 shadow-custom">
+          Confirm
+        </button>
       </div>
     </div>
   );
