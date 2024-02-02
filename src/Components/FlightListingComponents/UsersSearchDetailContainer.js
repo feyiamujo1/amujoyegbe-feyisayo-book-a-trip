@@ -13,7 +13,7 @@ const UsersSearchDetailContainer = ({ usersInfo }) => {
     <div className="bg-white rounded-[5px] p-4 shadow-custom">
       <div className="w-full px-2 flex items-center justify-between relative">
         <div className="h-[15px] w-[16px] bg-white rounded-full border border-buttonBlue"></div>
-        <img src={DesignLine} className="w-full" />
+        <img src={DesignLine} alt="design" className="w-full" />
         <div className="h-[15px] w-[16px] bg-white rounded-full border border-buttonBlue"></div>
         <svg
           width="17"
@@ -27,12 +27,12 @@ const UsersSearchDetailContainer = ({ usersInfo }) => {
           />
         </svg>
       </div>
-      <div className="flex justify-between items-center my-2.5">
+      <div className="flex justify-between items-center my-3">
         <div>
           {Airports.filter((airport) => airport.Id === flightOriginId).map(
             (airport) => (
               <>
-                <p className="font-semibold text-[22px]">{airport.Code}</p>
+                <p className="font-semibold text-[22px] text-[#080403]">{airport.Code}</p>
                 <p className="text-[9px]">{airport.StateName}, Nigeria</p>
               </>
             )
@@ -42,7 +42,7 @@ const UsersSearchDetailContainer = ({ usersInfo }) => {
           {Airports.filter((airport) => airport.Id === flightDestinationId).map(
             (airport) => (
               <>
-                <p className="font-semibold text-[22px]">{airport.Code}</p>
+                <p className="font-semibold text-[22px] text-[#080403]">{airport.Code}</p>
                 <p className="text-[9px]">{airport.StateName}, Nigeria</p>
               </>
             )
