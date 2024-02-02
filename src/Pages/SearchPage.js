@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Header from "../Components/Header";
-import ContentCounter from "../Components/ContentCounter";
-import FlightSelectionHandler from "../Components/FlightSelectionHandler";
-import DateHandler from "../Components/DateHandler";
+import ContentCounter from "../Components/SearchPageComponents/ContentCounter";
+import FlightSelectionHandler from "../Components/SearchPageComponents/FlightSelectionHandler";
+import DateHandler from "../Components/SearchPageComponents/DateHandler";
 import { useNavigate } from "react-router-dom";
 
 const SearchPage = () => {
@@ -14,12 +14,17 @@ const SearchPage = () => {
   const [flightDestinationId, setFlightDestinationId] = useState("");
   const [flightDateInfo, setFlightDateInfo] = useState("");
 
-  const navigateToNext = () => {
+  const navigateToNextPage = () => {
     navigate("/flight-listing", {
       state: {
         flightOriginId: flightOriginId,
         flightDestinationId: flightDestinationId,
         flightDateInfo: flightDateInfo,
+        passengersInfo: {
+          adults: adultCount,
+          children: childrenCount,
+          infants: infantCount,
+        },
       },
     });
   };
@@ -86,7 +91,7 @@ const SearchPage = () => {
             flightDestinationId === "" ||
             flightDateInfo === ""
           }
-          onClick={navigateToNext}
+          onClick={navigateToNextPage}
           className="w-full px-4 py-3 bg-buttonBlue text-center text-white rounded-[5px] hover:bg-grayedOut active:bg-grayedOut transition-all duration-500 disabled:bg-buttonBlue disabled:bg-opacity-60 disabled:hover:bg-buttonBlue disabled:hover:bg-opacity-60 shadow-custom">
           Confirm
         </button>

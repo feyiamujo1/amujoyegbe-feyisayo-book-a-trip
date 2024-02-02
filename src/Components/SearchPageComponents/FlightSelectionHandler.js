@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Airports from "../Assets/data/airports.json";
+import Airports from "../../Assets/data/airports.json";
 import BottomSheet from "./FlightBottomSheet";
 
 const FlightSelectionHandler = ({ flightType, flightId, setFlightId }) => {
@@ -37,13 +37,13 @@ const FlightSelectionHandler = ({ flightType, flightId, setFlightId }) => {
         </div>
         <div>
           {flightId !== "" &&
-            Airports.map((airport) =>
-              airport.Id === flightId ? (
+            Airports.filter((airport) => airport.Id === flightId).map(
+              (airport) => (
                 <p key={airport.Id} className="text-sm ">
                   <span>{airport.Name}</span>{" "}
                   <span className="">({airport.Code})</span>
                 </p>
-              ) : null
+              )
             )}
         </div>
       </div>
