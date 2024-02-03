@@ -25,7 +25,7 @@ const FlightListingPage = () => {
         </div>
         <div className="space-y-2.5">
           {FlightListing.map((flight, index) => (
-            <AvailableFlightsContainer flight={flight} key={index} />
+            <AvailableFlightsContainer flight={flight} key={index} usersInfo={usersInfo} />
           ))}
         </div>
       </div>

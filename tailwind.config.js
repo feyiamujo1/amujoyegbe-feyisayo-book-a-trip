@@ -14,7 +14,7 @@ module.exports = {
         buttonHover: "#dadada",
         textBlack: "#72737F",
         black400: "#15162B",
-        black300: "#15162B",
+        black300: "#434455",
 
       },
       boxShadow: {

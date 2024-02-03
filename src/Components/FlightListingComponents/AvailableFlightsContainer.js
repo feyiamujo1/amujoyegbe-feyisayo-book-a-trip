@@ -1,12 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import ellipseGray from "../../Assets/svgs/Ellipse 1111.svg";
 import moment from "moment";
 
-const AvailableFlightsContainer = ({ flight }) => {
+const AvailableFlightsContainer = ({ flight, usersInfo }) => {
+  const navigate = useNavigate();
+
+  const goToNextPage = () => {
+    navigate("/payment", {
+      state: { ...usersInfo, selectedFlightDetails: flight },
+    });
+  };
   return (
     <div className="bg-white rounded-[5px] p-4 border border-darker space-y-5">
       <div className="flex justify-between gap-1.5">
         <p className="w-[140px]">
-          <span className="font-semibold text-nowrap">{moment(flight.DepartureDate, moment.ISO_8601).format("hh:mm a").toString()}</span>{" "}
+          <span className="font-semibold text-nowrap">
+            {moment(flight.DepartureDate, moment.ISO_8601)
+              .format("hh:mm a")
+              .toString()}
+          </span>{" "}
           <span className="text-sm text-black300">
             {flight.DepartureAirportCode}
           </span>
@@ -38,7 +50,11 @@ const AvailableFlightsContainer = ({ flight }) => {
           </p>
         </div>
         <p className="w-[140px] text-right">
-          <span className="font-semibold text-nowrap">{moment(flight.ArrivalDate, moment.ISO_8601).format("hh:mm a").toString()}</span>{" "}
+          <span className="font-semibold text-nowrap">
+            {moment(flight.ArrivalDate, moment.ISO_8601)
+              .format("hh:mm a")
+              .toString()}
+          </span>{" "}
           <span className="text-sm text-black300">
             {flight.ArrivalAirportCode}
           </span>
@@ -54,15 +70,17 @@ const AvailableFlightsContainer = ({ flight }) => {
             ${flight.FlightClass === "Premium" && "text-[#CF9D61]"} 
             ${flight.FlightClass === "Business" && "text-[#5CC977]"} ${
               flight.FlightClass === "Premium" && "text-[#CF9D61]"
-            } text-[#72737F]`}>
+            } `}>
             {flight.FlightClass === "First"
               ? "First Class"
               : flight.FlightClass}
           </p>
         </div>
-        <p className="font-medium">N {flight.TotalFare}</p>
+        <p className="font-medium">N {flight.TicketFare}</p>
       </div>
-      <button className="w-full px-4 py-3 bg-buttonBlue text-center text-white rounded-[5px] hover:bg-grayedOut active:bg-grayedOut transition-all duration-500 ">
+      <button
+        onClick={goToNextPage}
+        className="w-full px-4 py-3 bg-buttonBlue text-center text-white rounded-[5px] hover:bg-grayedOut active:bg-grayedOut transition-all duration-500 ">
         Make Payment
       </button>
     </div>

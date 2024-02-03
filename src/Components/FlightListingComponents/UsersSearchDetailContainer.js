@@ -8,9 +8,16 @@ const UsersSearchDetailContainer = ({ usersInfo }) => {
     flightDestinationId,
     flightDateInfo,
     passengersInfo,
+    selectedFlightDetails,
   } = usersInfo;
+  console.log(selectedFlightDetails);
   return (
     <div className="bg-white rounded-[5px] p-4 shadow-custom">
+      {selectedFlightDetails && (
+        <p className=" text-buttonBlue font-semibold mb-2 text-center">
+          {selectedFlightDetails?.OperatingAirlineName}
+        </p>
+      )}
       <div className="w-full px-2 flex items-center justify-between relative">
         <div className="h-[15px] w-[16px] bg-white rounded-full border border-buttonBlue"></div>
         <img src={DesignLine} alt="design" className="w-full" />
@@ -27,27 +34,41 @@ const UsersSearchDetailContainer = ({ usersInfo }) => {
           />
         </svg>
       </div>
+      {selectedFlightDetails && (
+        <p
+          className={`text-[9px] mt-2 font-semibold text-center ${
+            selectedFlightDetails.FlightClass === "Economy" && "text-[#72737F]"
+          } 
+      ${selectedFlightDetails.FlightClass === "First" && "text-[#223E7C]"} 
+      ${selectedFlightDetails.FlightClass === "Premium" && "text-[#CF9D61]"} 
+      ${selectedFlightDetails.FlightClass === "Business" && "text-[#5CC977]"} ${
+            selectedFlightDetails.FlightClass === "Premium" && "text-[#CF9D61]"
+          }`}>
+          {selectedFlightDetails.FlightClass + " Class"}
+        </p>
+      )}
       <div className="flex justify-between items-center my-3">
-        <div>
-          {Airports.filter((airport) => airport.Id === flightOriginId).map(
-            (airport) => (
-              <>
-                <p className="font-semibold text-[22px] text-[#080403]">{airport.Code}</p>
-                <p className="text-[9px]">{airport.StateName}, Nigeria</p>
-              </>
-            )
-          )}
-        </div>
-        <div className="text-right">
-          {Airports.filter((airport) => airport.Id === flightDestinationId).map(
-            (airport) => (
-              <>
-                <p className="font-semibold text-[22px] text-[#080403]">{airport.Code}</p>
-                <p className="text-[9px]">{airport.StateName}, Nigeria</p>
-              </>
-            )
-          )}
-        </div>
+        {Airports.filter((airport) => airport.Id === flightOriginId).map(
+          (airport) => (
+            <div key={airport.Id}>
+              <p className="font-semibold text-[22px] text-[#080403]">
+                {airport.Code}
+              </p>
+              <p className="text-[9px]">{airport.StateName}, Nigeria</p>
+            </div>
+          )
+        )}
+
+        {Airports.filter((airport) => airport.Id === flightDestinationId).map(
+          (airport) => (
+            <div key={airport.Id} className="text-right">
+              <p className="font-semibold text-[22px] text-[#080403]">
+                {airport.Code}
+              </p>
+              <p className="text-[9px]">{airport.StateName}, Nigeria</p>
+            </div>
+          )
+        )}
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-between gap-1.5 items-center">
