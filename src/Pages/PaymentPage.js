@@ -5,7 +5,6 @@ import UsersSearchDetailContainer from "../Components/FlightListingComponents/Us
 const PaymentPage = () => {
   const location = useLocation();
   const usersInfo = location.state;
-  console.log(usersInfo);
 
   return (
     <div className="space-y-6 relative pb-7">

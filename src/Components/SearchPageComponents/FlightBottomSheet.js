@@ -9,20 +9,23 @@ const FlightBottomSheet = ({
 }) => {
   return (
     <>
-      <Sheet isOpen={showModal} onClose={() => setShowModal(false)}>
+      <Sheet
+        style={{ maxWidth: "400px", margin: "0 auto", height: "100vh" }}
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}>
         <Sheet.Container>
           <Sheet.Header />
           <Sheet.Content>
             <Sheet.Scroller>
-              <div className="py-6  relative ">
+              <div className="py-6 relative ">
                 <button
                   onClick={() => {
                     setShowModal(false);
                   }}
-                  className="fixed right-6 -mt-4 z-[9999] group">
+                  className="absolute right-6 -mt-4 z-[9999] group">
                   <svg
-                    width="12"
-                    height="12"
+                    width="14"
+                    height="14"
                     viewBox="0 0 12 12"
                     className="fill-[#434455] group-hover:fill-buttonBlue group-active:fill-buttonBlue transition-all duration-500"
                     xmlns="http://www.w3.org/2000/svg">

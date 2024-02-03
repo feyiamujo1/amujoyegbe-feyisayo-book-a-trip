@@ -10,7 +10,6 @@ const UsersSearchDetailContainer = ({ usersInfo }) => {
     passengersInfo,
     selectedFlightDetails,
   } = usersInfo;
-  console.log(selectedFlightDetails);
   return (
     <div className="bg-white rounded-[5px] p-4 shadow-custom">
       {selectedFlightDetails && (
