@@ -5,6 +5,7 @@ const FlightBottomSheet = ({
   setFlightId,
   showModal,
   setShowModal,
+  oppositeValue,
 }) => {
   return (
     <>
@@ -31,10 +32,16 @@ const FlightBottomSheet = ({
                 {Airports.map((airport) => (
                   <div
                     onClick={() => {
-                      setFlightId(airport.Id);
-                      setShowModal(false);
+                      if (oppositeValue !== airport.Id) {
+                        setFlightId(airport.Id);
+                        setShowModal(false);
+                      }
                     }}
-                    className="cursor-pointer px-5 active:bg-grayedOut md:hover:bg-grayedOut rounded-[5px] group"
+                    className={` px-5 ${
+                      oppositeValue === airport.Id
+                        ? "opacity-30"
+                        : "cursor-pointer active:bg-grayedOut md:hover:bg-grayedOut rounded-[5px] group"
+                    } `}
                     key={airport.Id}>
                     <div className="flex justify-between items-center h-[60px] border-b border-[#EFEFEF] group-hover:border-grayedOut transition-all duration-500 ">
                       <div>

@@ -36,11 +36,13 @@ const SearchPage = () => {
         <FlightSelectionHandler
           flightType={"From"}
           flightId={flightOriginId}
+          oppositeValue={flightDestinationId}
           setFlightId={setFlightOriginId}
         />
         <FlightSelectionHandler
           flightType={"To"}
           flightId={flightDestinationId}
+          oppositeValue={flightOriginId}
           setFlightId={setFlightDestinationId}
         />
         <DateHandler

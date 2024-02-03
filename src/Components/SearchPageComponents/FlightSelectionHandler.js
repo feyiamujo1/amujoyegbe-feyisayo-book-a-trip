@@ -3,7 +3,7 @@ import { useState } from "react";
 import Airports from "../../Assets/data/airports.json";
 import BottomSheet from "./FlightBottomSheet";
 
-const FlightSelectionHandler = ({ flightType, flightId, setFlightId }) => {
+const FlightSelectionHandler = ({ flightType, flightId, setFlightId, oppositeValue }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -49,7 +49,9 @@ const FlightSelectionHandler = ({ flightType, flightId, setFlightId }) => {
       </div>
       <BottomSheet
         Airports={Airports}
+        flightId={flightId}
         setFlightId={setFlightId}
+        oppositeValue={oppositeValue}
         showModal={showModal}
         setShowModal={setShowModal}
       />
